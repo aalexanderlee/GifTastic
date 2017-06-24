@@ -1,8 +1,26 @@
-//creates a toggling GIPHY page using an APIkey
+//Refer to the Week 3, Day 5 Activities for help and suggestions for appending and toggling
+//Creates a toggling GIPHY page using an APIkey
 //ALL ORIGINAL PSEUDOCODING AT THE BOTTOM OF FILE
 $(document).ready(function() {
 
+	 //Original array of foods for topic[], you will eventually append to
+      var topics = ["Pizza", "Sushi", "Pasta", "Sandwich", "Tacos", "Curry", "Salad", "Pastry"];
+      //Function placing the JSON content for each button into the buttonContainer div
+      function showGif() {
 
+        var movie = $(this).attr("data-name");
+        //add the APIkeyURL you generate on GIPHY for queryURL
+        var queryURL = "";
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).done(function(response) {
+          $("#buttonContainer").html(JSON.stringify(response));
+          appendButton();
+        });
+      }
+      
 
 //My notes:
 //Tools and link references you'll need:
