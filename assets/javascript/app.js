@@ -1,5 +1,8 @@
-//should produce a timed question list with radio button responses
+//creates a toggling GIPHY page using an APIkey
+//ALL ORIGINAL PSEUDOCODING AT THE BOTTOM OF FILE
 $(document).ready(function() {
+
+
 
 //My notes:
 //Tools and link references you'll need:
@@ -43,8 +46,5 @@ fmt - (optional) return results in html or json format (useful for viewing respo
 //Then you want add some kind of input box on your page (look up syntax and linkage)
 //For any string the user sticks in here, .pop it up into topics[ "yourOldShit", "theirNewShit"];
 //How to clear prevous buttons and append on top of it? Look at Day 4 Activities on adding buttons
-
-
-});
 
 });
