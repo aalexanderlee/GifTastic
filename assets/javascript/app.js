@@ -13,11 +13,15 @@ $(document).ready(function() {
         //try ---> https://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC
         //look at the parameters and tinker with how they go into the URL
         //ZOMG this URL works now!!! https://api.giphy.com/v1/gifs/search?q=%22+food+%22&limit=15&api_key=dc6zaTOxFJmzC
-        var queryURL = "";
+        //remember to use https instead of http
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=%22+food+%22&limit=15&api_key=dc6zaTOxFJmzC";
 
+        //gets the response Object from the query URL
         $.ajax({
           url: queryURL,
           method: "GET"
+        //this returns your response Object
+        //use JSON to stick these aka "append these" to the buttonContainer in HTML
         }).done(function(response) {
           $("#buttonContainer").html(JSON.stringify(response));
           appendButton();
