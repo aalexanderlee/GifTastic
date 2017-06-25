@@ -6,11 +6,12 @@ $(document).ready(function() {
 	 //Original array of foods for topic[], you will eventually append to
 	 //maybe rename it as foods[] to make it more explicit
       var foods = ["Pizza", "Sushi", "Pasta", "Sandwich", "Tacos", "Curry", "Salad", "Pastry"];
-      //Function placing the JSON content for each button into the buttonContainer div
+      
+	  //Function placing the JSON content for each button into the buttonContainer div
       function showGif() {
 
       	//this will hold the attribute for the data-name in a new variable, similar to the movie exercise
-        var food = $(this).attr("data-name");
+        var food = $(this).attr("data-name"); 
         //add the APIkeyURL you generate on GIPHY for queryURL
         //try ---> https://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC
         //look at the parameters and tinker with how they go into the URL
@@ -43,11 +44,8 @@ $(document).ready(function() {
           var a = $("<button>");
           // Adding a class of food to our button, think class=food within the button tags
           a.addClass("food");
-
-          // Adding a data-attribute
-          //YOU MIGHT NEED TO CHANGE THIS OR ADD ANOTHER LATER ON USING STILL & ANIMATE
-          a.attr("data-name", foods[i]);
-          
+          //Adds the input to the data-name of the button for each foods element
+          a.attr("data-name", foods[i]);          
           // Providing the initial button text using the strings from foods[]
           a.text(foods[i]);
           // Adding the button to the appendingButtons div
@@ -64,13 +62,33 @@ $(document).ready(function() {
         // Adding input from the textbox to our food array that becomes the buttons
         foods.push(food);
         console.log(foods)
-        // Calling renderButtons which handles the processing of our food array
+        // Calling appendButtons which handles the processing of our food array
         appendButtons();
       });
       // Using $(document).on because it adds event listeners to generated elements
       $(document).on("click", ".food", showGif);
       // Calling appendButtons to display the intial buttons
       appendButtons();
+
+      //make a .gif div for the actual gifs in html, and link the .gif class to the data attributes here 
+      //make this .gif class div BELOW the array of buttons at the top
+
+      //queryURL inside of function showGif needs to be referred to get the gifs
+      //Link data attributes and place the actual defined data arrays for data-arrays 
+
+      //Add a data-attribute for toggling
+      //Remove data-name and change to data-state 
+      //Maybe make an array with the different states, var data-state = ["data-still", "data-animate"]; 
+      //var still = ["data-still"] or data-state[0]; var animate = ["data-animate"] or data-state[1];
+
+      //make the initial data-state = still 
+      //data-still and data-animate are corresponding to response Object.method from queryURLs as VALUES
+      //set up if statements with a click function; REFER to pausing-gifs-solution.html for this part
+
+      //After, try to place only three of these into three items per GIF row
+      //The queryURL is at &limit=15&, so there should be five rows at most each time it generates
+      //You could use bootstrap, but you can probably break onto a new line after three iterates	
+
 
 //My original notes:
 //Tools and link references you'll need:
@@ -98,7 +116,7 @@ fmt - (optional) return results in html or json format (useful for viewing respo
 //*Is this list finite or is it empty/indefinite/filled in later?*//
 //topics[] is of string elements, try making a finite list first with 5 elements, then do a .push into it possible
 //Add and append of buttons into the original button list 
-//You can probably be see how this is done in the Week4, Day 4 activities	
+//You can probably see how this is done in the Week4, Day 4 activities	
 
 //Shove all the shit below into <div id="buttons"> for the html; $("allButtons").html();
 //Iterate across topics[] using (for (i=0;i<topics.length; i++) {}) --> stick createButton() ref here
