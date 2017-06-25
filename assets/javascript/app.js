@@ -9,7 +9,8 @@ $(document).ready(function() {
       //Function placing the JSON content for each button into the buttonContainer div
       function showGif() {
 
-        var movie = $(this).attr("data-name");
+      	//this will hold the attribute for the data-name in a new variable, similar to the movie exercise
+        var food = $(this).attr("data-name");
         //add the APIkeyURL you generate on GIPHY for queryURL
         //try ---> https://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC
         //look at the parameters and tinker with how they go into the URL
@@ -25,7 +26,7 @@ $(document).ready(function() {
         //use JSON for the appendingButton div in HTML
         }).done(function(response) {
           $("#appendingButton").html(JSON.stringify(response));
-          //make an a function that can append these buttons into that div
+          //make an a function below that can append these buttons into that div
           appendButtons();
         });
       }
@@ -35,6 +36,7 @@ $(document).ready(function() {
         // Clear out buttons before adding new foods into foods[] to avoid repeating the buttons
         $("#appendingButtons").empty();
         // Looping through the array of food string elements
+        //This will all refill everything we just emptied 
         for (var i = 0; i < foods.length; i++) {
           //$("<button>") can create the beginning and end tag. (<button></button>)
           var a = $("<button>");
@@ -53,6 +55,21 @@ $(document).ready(function() {
         }
       }
 
+      //This function will execute when the button for the addGifButton input in HTML is clicked
+      $("#addGifButton").on("click", function(event) {
+        event.preventDefault();
+        // This will grab the input from the textbox, as seen in click-json-solved.html from activities
+        var food = $("#gifInput").val().trim();
+        // Adding input from the textbox to our food array that becomes the buttons
+        foods.push(food);
+        console.log(foods)
+        // Calling renderButtons which handles the processing of our food array
+        appendButtons();
+      });
+      // Using $(document).on because it adds event listeners to generated elements
+      $(document).on("click", ".food", showGif);
+      // Calling appendButtons to display the intial buttons
+      appendButtons();
 
 //My original notes:
 //Tools and link references you'll need:
