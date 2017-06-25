@@ -4,7 +4,8 @@
 $(document).ready(function() {
 
 	 //Original array of foods for topic[], you will eventually append to
-      var topics = ["Pizza", "Sushi", "Pasta", "Sandwich", "Tacos", "Curry", "Salad", "Pastry"];
+	 //maybe rename it as foods[] to make it more explicit
+      var foods = ["Pizza", "Sushi", "Pasta", "Sandwich", "Tacos", "Curry", "Salad", "Pastry"];
       //Function placing the JSON content for each button into the buttonContainer div
       function showGif() {
 
@@ -21,15 +22,39 @@ $(document).ready(function() {
           url: queryURL,
           method: "GET"
         //this returns your response Object
-        //use JSON to stick these aka "append these" to the buttonContainer in HTML
+        //use JSON for the appendingButton div in HTML
         }).done(function(response) {
-          $("#buttonContainer").html(JSON.stringify(response));
-          appendButton();
+          $("#appendingButton").html(JSON.stringify(response));
+          //make an a function that can append these buttons into that div
+          appendButtons();
         });
       }
       
+      //Observe the format for adding class, attributes and texts to a button var from class activities
+      function appendButtons() {
+        // Clear out buttons before adding new foods into foods[] to avoid repeating the buttons
+        $("#appendingButtons").empty();
+        // Looping through the array of food string elements
+        for (var i = 0; i < foods.length; i++) {
+          //$("<button>") can create the beginning and end tag. (<button></button>)
+          var a = $("<button>");
+          // Adding a class of food to our button, think class=food within the button tags
+          a.addClass("food");
 
-//My notes:
+          // Adding a data-attribute
+          //YOU MIGHT NEED TO CHANGE THIS OR ADD ANOTHER LATER ON USING STILL & ANIMATE
+          a.attr("data-name", foods[i]);
+          
+          // Providing the initial button text using the strings from foods[]
+          a.text(foods[i]);
+          // Adding the button to the appendingButtons div
+          //This will "var a" to our target div, which we reassigned as a
+          $("appendingButtons").append(a);
+        }
+      }
+
+
+//My original notes:
 //Tools and link references you'll need:
 //Public APIkey is unavailable, make your own
 //make sure you use "https" instead of "http" at the beginning of URL
