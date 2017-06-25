@@ -10,6 +10,9 @@ $(document).ready(function() {
 
         var movie = $(this).attr("data-name");
         //add the APIkeyURL you generate on GIPHY for queryURL
+        //try ---> https://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC
+        //look at the parameters and tinker with how they go into the URL
+        //ZOMG this URL works now!!! https://api.giphy.com/v1/gifs/search?q=%22+food+%22&limit=15&api_key=dc6zaTOxFJmzC
         var queryURL = "";
 
         $.ajax({
@@ -27,6 +30,7 @@ $(document).ready(function() {
 //Public APIkey is unavailable, make your own
 //make sure you use "https" instead of "http" at the beginning of URL
 //The APIkey from your GIPHY account is ac8ce1f4be214b7f910642165089875a
+//The APIkey from the public beta key is dc6zaTOxFJmzC
 //URL for your account APIkey = https://api.giphy.com/v1/gifs/random?api_key=ac8ce1f4be214b7f910642165089875a&tag=&rating=G
 //Use the activity queryURL format to do the Giphy API linkage
 
