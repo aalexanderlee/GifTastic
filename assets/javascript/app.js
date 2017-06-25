@@ -14,6 +14,7 @@ $(document).ready(function() {
         //add the APIkeyURL you generate on GIPHY for queryURL
         //try ---> https://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC
         //look at the parameters and tinker with how they go into the URL
+        //Note that the beta API key will always be dc6zaTOxFJmzC for this assignments
         //ZOMG this URL works now!!! https://api.giphy.com/v1/gifs/search?q=%22+food+%22&limit=15&api_key=dc6zaTOxFJmzC
         //remember to use https instead of http
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=%22+food+%22&limit=15&api_key=dc6zaTOxFJmzC";
