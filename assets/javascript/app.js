@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function() {
 //topics[] have initial food elements that are emptied and appended to
 //Begin by making a starting array with topic items as elements
 var topics = ["pizza", "tacos", "ramen", "sushi", "salad", "sandwich"];

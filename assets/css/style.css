@@ -5,6 +5,21 @@ h1 {
 .container {
 	background-color: #00CED1;
 	margin-bottom: 20px;
-	
+	border: #FF4500 5px solid;
+}
+
+#add-food {
+	background-color: #FF4500;
+	color: white;
+}
+
+#food-input {
+	background-color: white;
+	color: grey;
+}
+
+button {
+	background-color: #FF4500;
+	color: white;
 }
 
