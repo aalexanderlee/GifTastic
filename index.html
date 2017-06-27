@@ -2,25 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>GifTastic: Foods</title>
+  <title>GifTastic | Foods</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
   <!--<style type="text/css">
     h1, button, div, form, input {
       margin: 20px;
     }
   </style>-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-  <script type="text/javascript" src="assets/javascript/app.js"></script>
 </head>
 
 <body>
 	<!--Make something to absorb all of these children as an outer shell container-->
 	<div class="container">
 		<div id="header">
-		<h1>Search For Foods<hr></h1>	
+		<h1>GifTastic | Search For Foods<hr></h1>	
 		</div>
 
 		<!--Append all buttons in the top row-->
@@ -29,12 +28,12 @@
 		<!--This row will hold the gifs and the search box on the rightside-->
 		<div class="row">
 		<!--API key is set at 15, it should leave 3 per row in these 9 columns-->
-			<div class="col-sm-9">
-				<div class="row" id="gifsOne"></div>
-				<div class="row" id="gifsTwo"></div>
-				<div class="row" id="gifsThree"></div>
-				<div class="row" id="gifsFour"></div>
-				<div class="row" id="gifsFive"></div>	
+			<div class="col-sm-9" id="all-gifs">
+				<div class="row" id="gifRowOne"></div>
+				<div class="row" id="gifRowTwo"></div>
+				<div class="row" id="gifRowThree"></div>
+				<div class="row" id="gifRowFour"></div>
+				<div class="row" id="gifRowFive"></div>	
 			</div>
 		
 		<!--The search bar for input is set to 3 columns-->

@@ -3,18 +3,62 @@ $(document).ready(function() {
 //Begin by making a starting array with topic items as elements
 var topics = ["pizza", "tacos", "ramen", "sushi", "salad", "sandwich"];
 
+//Chronological First Function
+//Function for displaying initial food array elements as buttons
+function renderButtons() {
+  // Deleting the food buttons prior to adding new food buttons
+  // (this is necessary otherwise we will have repeat buttons)
+  $("#buttonFoods").empty();
+  // Looping through the array of foods
+  for (var i = 0; i < topics.length; i++) {
+  // Then dynamicaly generating buttons for each food in the array.
+  // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
+    var a = $("<button>");
+    // Adding a class
+    a.addClass("btn btn - food info");
+    // Adding a data-attribute with a value of the food at index i
+    a.attr("data-name", topics[i]);
+    // Providing the button's text with a value of the food at index i
+    a.text(topics[i]);
+    // Adding the button to the HTML
+    $("#buttonFoods").append(a);
+    $('#food-input').val('')
+  }
+}
+
+//Chronological Second Function
+//This function will stick push new food input into topics[] and call on renderButtons function
+$("#add-food").on("click", function(event) {
+  // event.preventDefault() prevents the form from trying to submit itself.
+  // We're using a form so that the user can hit enter instead of clicking the button if they want
+  event.preventDefault();
+  // This line will grab the text from the input box
+  var food = $("#food-input").val().trim();
+  // The food from the textbox is then added to our array
+  topics.push(food);
+  // calling renderButtons which handles the processing of our food array
+  renderButtons();
+});
+
+$(document).on("click",".food", showGifs);
+// Calling the renderButtons function at least once to display the initial list of foods
+renderButtons()
+
+});
+
+//Chronological Third Function
 //This function will grab gifs from the API key from the query URL
 function showGifs() {
     var food = $(this).attr('data-name');
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&limit=15&api_key=dc6zaTOxFJmzC";       
     //Empty all of the gifs in the second bootstrap row 
     //This will make sure buttons do not repeated
-    $("#gifsOne").empty();
-    $("#gifsTwo").empty();
-    $("#gifsThree").empty();
-    $("#gifsFour").empty();
-    $("#gifsFive").empty();
-    // Creating an AJAX call for the specific food button being clicked       
+    $("#gifRowOne").empty();
+    $("#gifRowTwo").empty();
+    $("#gifRowThree").empty();
+    $("#gifRowFour").empty();
+    $("#gifRowFive").empty();
+    //Creating an AJAX call for the specific food button being clicked       
     $.ajax({
     url: queryURL,
     method: "GET"
@@ -38,26 +82,26 @@ function showGifs() {
         foodGifs.append(foodImage);
         //Fit the gifs that iterate out onto page into their own rows of three with 5 total rows
         if (i < 3){
-          $('#gifsOne').append(foodGifs)
+          $('#gifRowOne').append(foodGifs)
         }
         else if (i > 3 && i < 7) {
-          $('#gifsTwo').append(foodGifs);
+          $('#gifRowTwo').append(foodGifs);
         }
         else if (i > 6 && i < 10){
-          $('#gifsThree').append(foodGifs);
+          $('#gifRowThree').append(foodGifs);
         }
         else if (i > 9 && i < 13) {
-          $('#gifsFour').append(foodGifs);
+          $('#gifRowFour').append(foodGifs);
         }
         else if (i > 12 && i < 15) {
-          $('#gifsFive').append(foodGifs);
+          $('#gifRowFive').append(foodGifs);
         };
       }
     })
 }
 
+//Chronological Fourth Function
 //Add toggle function here
-// toggle animation!
 $(document).on("click", ".gif", function(){
 
   var still = $(this).attr("data-still");
@@ -72,47 +116,6 @@ $(document).on("click", ".gif", function(){
     $(this).attr("data-state", "still");
   }
 })
-
-// Function for displaying initial food array elements as buttons
-function renderButtons() {
-  // Deleting the food buttons prior to adding new food buttons
-  // (this is necessary otherwise we will have repeat buttons)
-  $("#buttonFoods").empty();
-  // Looping through the array of foods
-  for (var i = 0; i < topics.length; i++) {
-  // Then dynamicaly generating buttons for each food in the array.
-  // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
-    var a = $("<button>");
-    // Adding a class
-    a.addClass("btn btn - food info");
-    // Adding a data-attribute with a value of the food at index i
-    a.attr("data-name", topics[i]);
-    // Providing the button's text with a value of the food at index i
-    a.text(topics[i]);
-    // Adding the button to the HTML
-    $("#buttonFoods").append(a);
-    $('#food-input').val('')
-  }
-}
-
-//This function will stick push new food input into topics[] and call on renderButtons function
-$("#add-food").on("click", function(event) {
-  // event.preventDefault() prevents the form from trying to submit itself.
-  // We're using a form so that the user can hit enter instead of clicking the button if they want
-  event.preventDefault();
-  // This line will grab the text from the input box
-  var food = $("#food-input").val().trim();
-  // The food from the textbox is then added to our array
-  topics.push(food);
-  // calling renderButtons which handles the processing of our food array
-  renderButtons();
-});
-
-$(document).on("click",".food", showGifs);
-// Calling the renderButtons function at least once to display the initial list of foods
-renderButtons()
-
-});
 
 
     
