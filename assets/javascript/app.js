@@ -5,8 +5,8 @@ var topics = ["pizza", "tacos", "ramen", "sushi", "salad", "sandwich"];
 
 //This function will grab gifs from the API key from the query URL
 function showGifs() {
-    var search = $(this).attr('data-name');
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&limit=15&api_key=dc6zaTOxFJmzC";       
+    var food = $(this).attr('data-name');
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&limit=15&api_key=dc6zaTOxFJmzC";       
     //Empty all of the gifs in the second bootstrap row 
     //This will make sure buttons do not repeated
     $("#gifsOne").empty();
@@ -19,7 +19,8 @@ function showGifs() {
     url: queryURL,
     method: "GET"
     }).done(function(response) {
-      var giphyArr = response.data;
+      //grab the data array from the response object stored in API key and store as variable name 
+      var giphyArr = response.data; 
     //The response Object's first method is the data array in queryURL
       for(i=0; i<giphyArr.length; i++){
         //Target a div to hold the food gifs
@@ -36,7 +37,7 @@ function showGifs() {
         foodGifs.append(pOne);
         foodGifs.append(foodImage);
         //Fit the gifs that iterate out onto page into their own rows of three with 5 total rows
-        if (i < 4){
+        if (i < 3){
           $('#gifsOne').append(foodGifs)
         }
         else if (i > 3 && i < 7) {
@@ -48,7 +49,7 @@ function showGifs() {
         else if (i > 9 && i < 13) {
           $('#gifsFour').append(foodGifs);
         }
-        else if (i > 12 && i < 16) {
+        else if (i > 12 && i < 15) {
           $('#gifsFive').append(foodGifs);
         };
       }
