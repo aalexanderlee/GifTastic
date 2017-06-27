@@ -5,8 +5,8 @@ var topics = ["pizza", "tacos", "ramen", "sushi", "salad", "sandwich"];
 
 //This function will grab gifs from the API key from the query URL
 function showGifs() {
-    var food = $(this).attr('data-name');
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&limit=15&api_key=dc6zaTOxFJmzC";       
+    var search = $(this).attr('data-name');
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&limit=15&api_key=dc6zaTOxFJmzC";       
     //Empty all of the gifs in the second bootstrap row 
     //This will make sure buttons do not repeated
     $("#gifsOne").empty();
@@ -21,16 +21,16 @@ function showGifs() {
     }).done(function(response) {
       var giphyArr = response.data;
     //The response Object's first method is the data array in queryURL
-      for(i=0; i<giphy.length; i++){
+      for(i=0; i<giphyArr.length; i++){
         //Target a div to hold the food gifs
         var foodGifs = $('<div class="col-sm-3">');
         //Creating an element to have the rating displayed
-        var pOne = $("<p>").text("Rating: " + giphy[i].rating);
+        var pOne = $("<p>").text("Rating: " + giphyArr[i].rating);
         var foodImage = $('<img data-state="still">')
 
-        foodImage.attr('src', giphy[i].images.fixed_height_still.url)
-        foodImage.attr('data-animate', giphy[i].images.fixed_height.url)
-        foodImage.attr('data-still', giphy[i].images.fixed_height_still.url)
+        foodImage.attr('src', giphyArr[i].images.fixed_height_still.url)
+        foodImage.attr('data-animate', giphyArr[i].images.fixed_height.url)
+        foodImage.attr('data-still', giphyArr[i].images.fixed_height_still.url)
         foodImage.attr('class', 'gif img-responsive')
         
         foodGifs.append(pOne);
