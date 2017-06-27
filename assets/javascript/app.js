@@ -1,42 +1,66 @@
+//topics[] have initial food elements that are emptied and appended to
+//Begin by making a starting array with topic items as elements
+var topics = ["pizza", "tacos", "ramen", "sushi", "salad", "sandwich"];
 
 
 
-      var topics = ["Pizza", "Tacos", "Ramen", "Sushi", "Salad"];
 
-      function displayfoodInfo() {
-        var food = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&limit=10&api_key=dc6zaTOxFJmzC";
-        // Creating an AJAX call for the specific food button being clicked
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).done(function(response) {
+
+  //This function will grab gifs from the API key from the query URL
+  function displayfoodInfo() {
+      var food = $(this).attr("data-name");
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&limit=15&api_key=dc6zaTOxFJmzC";       
+        //Empty all of the gifs in the second bootstrap row 
+        //This will make sure buttons do not repeated
+        $("#gifsOne").empty();
+        $("#gifsTwo").empty();
+        $("#gifsThree").empty();
+        $("#gifsFour").empty();
+        $("#gifsFive").empty();
+        // Creating an AJAX call for the specific food button being clicked       
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).done(function(response) {
+          //The response Object's first method is the data array in queryURL
           for(i=0; i<response.data.length; i++){
-          // Creating a div to hold the food
-          var foodDiv = $("<div class='food'>");
-          // Storing the rating data
-          var rating = response.data[];
+            //Target a div to hold the food gifs
+            var foodGifs = $('<div class="col-sm-9">');
+            //Creating an element to have the rating displayed
+            var pOne = $("<p>").text("Rating: " + response.data.rating);
+            var foodImage = $('<img data-state="still">')
 
-          // Creating an element to have the rating displayed
-          var pOne = $("<p>").text("Rating: " + rating);
-          // Displaying the rating
-          foodDiv.append(pOne);
+            foodImage.attr('src', response.data.images.fixed_height_still.url)
+            foodImage.attr('data-animate', response.data.images.fixed_height.url)
+            foodImage.attr('data-still', response.data.images.fixed_height_still.url)
+            foodImage.attr('class', 'gif img-responsive')
+      
+            foodGifs.append(pOne);
+            foodGifs.append(foodImage);
+
+            //Fit the gifs that iterate out onto page into their own rows of three with 5 total rows
+            if (i < 4){
+            $('#gifsOne').append(foodGifs)
+             }
+            else if (i > 3 && i < 7) {
+            $('#gifsTwo').append(foodGifs);
+             }
+            else if (i > 6 && i < 10){
+            $('#gifsThree').append(foodGifs);
+            }
+            else if (i > 9 && i < 13) {
+            $('#gifsFour').append(foodGifs);
+            }
+            else if(i > 12 && i < 16) {
+            $('#gifsFive').append(foodGifs);
+            };
+          }
+      })
+  }
+
+
           
-          // Retrieving the URL for the image
-          var imgURL = response.Poster;
-          // Creating an element to hold the image
-          var image = $("<img>").attr("src", imgURL);
-          // Appending the image
-          foodDiv.append(image);
-          // Putting the entire food above the previous foods
-          $("#food-view").prepend(foodDiv);
-      	}
-        
-        });
-      }
-
-
-
+          
 
 
 
